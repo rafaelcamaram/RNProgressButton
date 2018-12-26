@@ -1,0 +1,8 @@
+
+*.log
+tmp
+.babelrc
+node_modules
+ios
+android
+.sonarlint
