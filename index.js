@@ -1,5 +1,3 @@
 import RNProgressButton from './RNProgressButton';
 
-module.exports = {
-  RNProgressButton
-};
+export default RNProgressButton;

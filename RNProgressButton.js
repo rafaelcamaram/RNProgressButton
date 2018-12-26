@@ -22,7 +22,7 @@ class RNProgressButton extends React.PureComponent {
   }
 
   _renderButton(isActive) {
-    const labelColor = isActive ? COLORS.white : COLORS.primary;
+    const labelColor = isActive ? this.props.incompletedColor : this.props.completedColor;
     const { onPress, completed, nextLabel, finishLabel } = this.props;
 
     return (
@@ -38,7 +38,7 @@ class RNProgressButton extends React.PureComponent {
     if (this.state.completed !== '100%') return null;
 
     const { onPress, label } = this.props.secondaryOption;
-    const labelColor = isActive ? COLORS.white : COLORS.primary;
+    const labelColor = isActive ? this.props.incompletedColor : this.props.completedColor;
 
     return (
       <SecondaryButton isActive={isActive} onPress={onPress}>
@@ -50,8 +50,10 @@ class RNProgressButton extends React.PureComponent {
   render() {
     return (
       <RNProgressButtonContainer>
-        <IncompletePart percent={this.state.incomplete}>{this._renderButton(false)}</IncompletePart>
-        <CompletedPart percent={this.state.completed} />
+        <IncompletePart percent={this.state.incomplete} backgroundColor={this.props.incompletedColor}>
+          {this._renderButton(false)}
+        </IncompletePart>
+        <CompletedPart percent={this.state.completed} backgroundColor={this.props.completedColor} />
         {this._renderSecondaryButton(true)}
         {this._renderButton(true)}
       </RNProgressButtonContainer>
@@ -114,7 +116,7 @@ const IncompletePart = styled(Part)`
   width: ${props => (props.percent ? props.percent : '0%')};
   height: 60;
 
-  background-color: ${props => (props.backgroundColor ? props.backgroundColor : COLORS.darkerBackground)};
+  background-color: ${props => props.backgroundColor};
 
   z-index: 10;
   padding-bottom: 30;
@@ -124,7 +126,7 @@ const CompletedPart = styled(Part)`
   width: ${props => (props.percent ? props.percent : '0%')};
   height: 60;
 
-  background-color: ${props => (props.backgroundColor ? props.backgroundColor : COLORS.primary)};
+  background-color: ${props => props.backgroundColor};
 
   position: absolute;
   top: 0;
@@ -150,7 +152,9 @@ RNProgressButton.defaultProps = {
     return <MoveForwardIcon source={isActiveImage} />;
   },
   finishLabel: 'Finish',
-  nextLabel: 'Next Step'
+  nextLabel: 'Next Step',
+  completedColor: COLORS.primary,
+  incompletedColor: COLORS.darkerBackground
 };
 
 RNProgressButton.propTypes = {
@@ -160,7 +164,9 @@ RNProgressButton.propTypes = {
   renderLabel: PropTypes.func,
   renderIcon: PropTypes.func,
   nextLabel: PropTypes.string,
-  finishLabel: PropTypes.string
+  finishLabel: PropTypes.string,
+  completedColor: PropTypes.string,
+  incompletedColor: PropTypes.string
 };
 
 export default RNProgressButton;

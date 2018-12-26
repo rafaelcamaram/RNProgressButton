@@ -1,13 +1,13 @@
 {
   "name": "rn-progress-button",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Awesome progress button made in React Native.",
   "author": {
     "name": "Rafael Câmara",
     "email": "rafaelcamaram@gmail.com"
   },
   "keywords": [
-    "react-native", 
+    "react-native",
     "react",
     "awesome",
     "progress",
