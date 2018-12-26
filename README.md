@@ -50,8 +50,9 @@ Example:
         ? require('@assets/images/icons/icContinueOff.png')
         : require('@assets/images/icons/icContinue.png');
 
-        return <Image source={isActiveImage};
+        return <Image source={isActiveImage}/>;
     }}
     onPress={() => {}}
 />
 ```
+
