@@ -1,0 +1,3 @@
+rootProject.name = 'RNProgressButton'
+
+include ':app'
